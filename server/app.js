@@ -1,13 +1,13 @@
 const express=require('express');
 const bodyParser=require('body-parser')
-
+const usersRoutes=require('./routes/usersRoutes')
 require("./db/index.js");
 const cors = require('cors');
 const app=express();
 app.use(cors());
 const port=process.env.PORT||5000;
 app.use(bodyParser.json())
-
+app.use('/users',usersRoutes);
 app.use('/',(req,res,next)=>{
   res.json({message:"hello wolrd"})
 })
