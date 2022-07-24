@@ -3,6 +3,7 @@ const bodyParser=require('body-parser')
 const usersRoutes=require('./routes/usersRoutes')
 require("./db/index.js");
 const cors = require('cors');
+const passport=require("passport")
 const app=express();
 app.use(cors());
 const port=process.env.PORT||5000;

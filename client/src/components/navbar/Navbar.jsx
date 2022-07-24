@@ -2,6 +2,7 @@ import React from 'react'
 import {  Link } from "react-router-dom";
 import '../../css/style.css'
 const BottomNavbar = () => {
+  
   return (
    <>
    {/* <!-- Navbar Start --> */}
@@ -48,21 +49,21 @@ const BottomNavbar = () => {
                             <Link to="/" className="nav-item nav-link active">Home</Link>
                             <Link to="/shop" className="nav-item nav-link">Shop</Link>
                             <Link to="/detail" className="nav-item nav-link">Shop Detail</Link>
-                            <div className="nav-item dropdown">
+                              {/* <div className="nav-item dropdown">
                                 <Link to="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i className="fa fa-angle-down mt-1"></i></Link>
                                 <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <Link to="/cart" className="dropdown-item">Shopping Cart</Link>
-                                    <Link to="/checkout" className="dropdown-item">Checkout</Link>
+                                  <Link to="/cart" className="dropdown-item">Shopping Cart</Link>
+                                  <Link to="/checkout" className="dropdown-item">Checkout</Link>
                                 </div>
-                            </div>
-                            <Link to="/contact" className="nav-item nav-link">Contact</Link>
+                            </div> */}
+                            {/* <Link to="/contact" className="nav-item nav-link">Contact</Link> */}
                         </div>
                         <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <Link to="/" className="btn px-0">
                                 <i className="fas fa-heart text-primary"></i>
                                 <span className="badge text-secondary border border-secondary rounded-circle" style={{paddingBottom: '2px'}}>0</span>
                             </Link>
-                            <Link to="/" className="btn px-0 ml-3">
+                            <Link to="/cart" className="btn px-0 ml-3">
                                 <i className="fas fa-shopping-cart text-primary"></i>
                                 <span className="badge text-secondary border border-secondary rounded-circle" style={{paddingBottom: '2px'}}>0</span>
                             </Link>
