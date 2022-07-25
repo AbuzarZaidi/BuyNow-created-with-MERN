@@ -205,7 +205,7 @@ const Shop = () => {
                                 <div className="text-center py-4">
                                     <Link className="h6 text-decoration-none text-truncate" to="/">{val.name}</Link>
                                     <div className="d-flex align-items-center justify-content-center mt-2">
-                                        <h5>${val.price}</h5><h6 className="text-muted ml-2"><del>${val.price+500}</del></h6>
+                                        <h5>${val.price}</h5><h6 className="text-muted ml-2"><del>${val.price+(val.price*0.2)}</del></h6>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-center mb-1">
                                         <small className="fa fa-star text-primary mr-1"></small>
