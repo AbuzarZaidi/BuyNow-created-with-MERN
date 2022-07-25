@@ -32,5 +32,5 @@ imgUrl:{
 },
 },{timeStamps:true});
 
-const Products = mongoose.model('products', productsSchema );
-module.exports=Products;
+const Product = mongoose.model('products', productsSchema );
+module.exports=Product;

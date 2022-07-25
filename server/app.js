@@ -2,6 +2,7 @@ const express=require('express');
 // const cookieSession = require("cookie-session");
 const bodyParser=require('body-parser')
 const usersRoutes=require('./routes/usersRoutes')
+const productRoutes=require('./routes/productRoutes')
 require("./db/index.js");
 const passportSetup = require("./passport");
 const cors = require('cors');
@@ -31,6 +32,7 @@ app.use(
 );
 
 app.use('/users',usersRoutes);
+app.use('/product',productRoutes)
 app.use('/',(req,res,next)=>{
   res.json({message:"hello wolrd"})
 })
