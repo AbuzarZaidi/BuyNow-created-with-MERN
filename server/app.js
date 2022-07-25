@@ -32,7 +32,7 @@ app.use(
 );
 
 app.use('/users',usersRoutes);
-app.use('/product',productRoutes)
+app.use('/products',productRoutes)
 app.use('/',(req,res,next)=>{
   res.json({message:"hello wolrd"})
 })
