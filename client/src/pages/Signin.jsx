@@ -53,7 +53,7 @@ const Signin = () => {
     }
   };
   const googleAuth=()=>{
-window.open("http://localhost:5000/users/google/callback","_self")
+    window.open("http://localhost:5000/users/google", "_self");
   }
   return (
   <>
