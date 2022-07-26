@@ -9,7 +9,10 @@ description:{
     type:String,
     required:true
 },
-
+longDescription:{
+    type:String,
+    required:true
+},
 category:{
     type:String,
     required:true

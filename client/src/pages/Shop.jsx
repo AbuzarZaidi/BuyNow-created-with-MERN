@@ -1,12 +1,16 @@
 import React,{useEffect,useState} from 'react'
-import {  Link } from "react-router-dom";
+import {  Link,useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setProductHandler } from "../store/products";
 import {getProducts} from'../functions/products'
 const Shop = () => {
+    const dispatch = useDispatch();
+    const navigate=useNavigate();
     const [products,setProducts]=useState([]);
     const[show,setShow]=useState(false);
-  useEffect(() => {
+//   useEffect(() => {
     
-  }, [])
+//   }, [])
   useEffect(() => {
     const fetchData = async () => {
       const result = await getProducts();
@@ -16,6 +20,10 @@ const Shop = () => {
     };
     fetchData();
   }, [setProducts]);
+  const productDetailHandler=(product)=>{
+navigate('/detail')
+dispatch(setProductHandler(product));
+  }
   return (
     <>
      {/* <!-- Breadcrumb Start --> */}
@@ -191,7 +199,7 @@ const Shop = () => {
 </div>}</div>
                     {show&&products.map((val)=>{
                         return(
-                            <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
+                            <div className="col-lg-4 col-md-6 col-sm-6 pb-1" onClick={()=>productDetailHandler(val)}>
                             <div className="product-item bg-light mb-4">
                                 <div className="product-img position-relative overflow-hidden">
                                     <img className="img-fluid w-100" src={val.imgUrl} alt="" style={{height:"250px"}}/>
