@@ -48,7 +48,7 @@ const BottomNavbar = () => {
                         <div className="navbar-nav mr-auto py-0">
                             <Link to="/" className="nav-item nav-link active">Home</Link>
                             <Link to="/shop" className="nav-item nav-link">Shop</Link>
-                            <Link to="/detail" className="nav-item nav-link">Shop Detail</Link>
+                            {/* <Link to="/detail" className="nav-item nav-link">Shop Detail</Link> */}
                               {/* <div className="nav-item dropdown">
                                 <Link to="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i className="fa fa-angle-down mt-1"></i></Link>
                                 <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">

@@ -31,7 +31,7 @@ colors:{
     type:[String]
 },
 imgUrl:{
-    type:String,
+    type:[String],
 },
 },{timeStamps:true});
 
