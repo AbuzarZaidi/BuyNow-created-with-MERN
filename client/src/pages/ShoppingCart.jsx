@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useEffect,useState} from 'react'
 import {  Link } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import {setIncreaseQuantity,setDecreaseQuantity } from "../store/cart"
 const ShoppingCart = () => {
+    const product = useSelector((state) => state.cartData.product);
+    const shipping= useSelector((state) => state.cartData.shipping);
+    const[total,setTotal]=useState(0);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        let sum=0;
+      for(let i=0;i<product.length;i++){
+ sum=sum+product[i].productQuantity*product[i].price;
+ console.log(sum)
+      }
+      console.log(sum)
+setTotal(sum)
+    }, [product])
+    
+    
+   
+    const plusHandler=(i)=>{
+        dispatch(setIncreaseQuantity(i));
+    }
+    const minusHandler=(i)=>{
+        dispatch(setDecreaseQuantity(i));
+    }
   return (
     <>
      {/* <!-- Breadcrumb Start --> */}
@@ -32,111 +56,33 @@ const ShoppingCart = () => {
                         </tr>
                     </thead>
                     <tbody className="align-middle">
-                        <tr>
-                            <td className="align-middle"><img src="img/product-1.jpg" alt="" style={{width: "50px"}}/> Product Name</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: "100px"}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary border-0 text-center" defaultValue="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-danger"><i className="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td className="align-middle"><img src="img/product-2.jpg" alt=""  style={{width: "50px"}}/> Product Name</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: "100px"}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary border-0 text-center" defaultValue="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-danger"><i className="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td className="align-middle"><img src="img/product-3.jpg" alt=""  style={{width: "50px"}}/> Product Name</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: "100px"}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary border-0 text-center" defaultValue="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-danger"><i className="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td className="align-middle"><img src="img/product-4.jpg" alt=""  style={{width: "50px"}}/> Product Name</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: "100px"}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary border-0 text-center" defaultValue="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-danger"><i className="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td className="align-middle"><img src="img/product-5.jpg" alt=""  style={{width: "50px"}}/> Product Name</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto"  style={{width: "100px"}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary border-0 text-center" defaultValue="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-danger"><i className="fa fa-times"></i></button></td>
-                        </tr>
+{product.map((val,i)=>{
+    return(
+        <tr>
+        <td className="align-middle"><img src={val.imgUrl[0]} alt="" style={{width: "50px",height: "50px"}}/>  {val.name}</td>
+        <td className="align-middle">${val.price}</td>
+        <td className="align-middle">
+            <div className="input-group quantity mx-auto" style={{width: "100px"}}>
+                <div className="input-group-btn">
+                    <button className="btn btn-sm btn-primary btn-minus" >
+                    <i className="fa fa-minus" onClick={()=>minusHandler(i)}></i>
+                    </button>
+                </div>
+                <input type="text" className="form-control form-control-sm bg-secondary border-0 text-center"  value={val.productQuantity} disabled/>
+                <div className="input-group-btn">
+                    <button className="btn btn-sm btn-primary btn-plus" onClick={()=>plusHandler(i)}>
+                        <i className="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </td>
+        <td className="align-middle">${val.price*val.productQuantity}</td>
+        <td className="align-middle"><button className="btn btn-sm btn-danger"><i className="fa fa-times"></i></button></td>
+    </tr>
+    )
+})}
+                       
+                    
                     </tbody>
                 </table>
             </div>
@@ -154,17 +100,17 @@ const ShoppingCart = () => {
                     <div className="border-bottom pb-2">
                         <div className="d-flex justify-content-between mb-3">
                             <h6>Subtotal</h6>
-                            <h6>$150</h6>
+                            <h6>${total}</h6>
                         </div>
                         <div className="d-flex justify-content-between">
                             <h6 className="font-weight-medium">Shipping</h6>
-                            <h6 className="font-weight-medium">$10</h6>
+                            <h6 className="font-weight-medium">${shipping}</h6>
                         </div>
                     </div>
                     <div className="pt-2">
                         <div className="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5>$160</h5>
+                            <h5>${total+shipping}</h5>
                         </div>
                         <button className="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
                     </div>

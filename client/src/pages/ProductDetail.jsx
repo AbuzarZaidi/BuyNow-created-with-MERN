@@ -1,15 +1,32 @@
 import React,{useState} from 'react'
 import { HashLink as Link } from "react-router-hash-link";
-// import {  Link} from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import Description from '../components/productDetail.jsx/Description';
 import Information from '../components/productDetail.jsx/Information'
 import Review from '../components/productDetail.jsx/Review'
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { setProductHandler } from "../store/cart";
 import RelatedProducts from '../components/productDetail.jsx/RelatedProducts';
 const ProductDetail = () => {
+    const navigate=useNavigate();
+    const dispatch = useDispatch();
     const product = useSelector((state) => state.productData.product);
 const [showTab,setShowTab]=useState(0)
-console.log(product.imgUrl)
+const [quantity,setQuantity]=useState(1);
+const addToCart=()=>{
+    // console.log(product)
+    const newProduct={
+id:product._id,
+name:product.name,
+price:product.price,
+imgUrl:product.imgUrl,
+singleProductTotal:0,
+productQuantity:quantity,
+    }
+    // console.log(newProduct)
+    dispatch(setProductHandler(newProduct));
+    navigate('/cart')
+}
   return (
  <>
  {/* <!-- Breadcrumb Start --> */}
@@ -103,18 +120,18 @@ console.log(product.imgUrl)
                     <div className="d-flex align-items-center mb-4 pt-2">
                         <div className="input-group quantity mr-3" style={{width: "130px"}}>
                             <div className="input-group-btn">
-                                <button className="btn btn-primary btn-minus">
+                                <button className="btn btn-primary btn-minus"onClick={() => setQuantity(quantity - 1)}>
                                     <i className="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" className="form-control bg-secondary border-0 text-center" defaultValue="1"/>
+                            <input type="text" className="form-control bg-secondary border-0 text-center" value={quantity}/>
                             <div className="input-group-btn">
-                                <button className="btn btn-primary btn-plus">
+                                <button className="btn btn-primary btn-plus" onClick={() => setQuantity(quantity + 1)}>
                                     <i className="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
-                        <button className="btn btn-primary px-3"><i className="fa fa-shopping-cart mr-1"></i> Add To
+                        <button className="btn btn-primary px-3" onClick={addToCart}><i className="fa fa-shopping-cart mr-1"></i> Add To
                             Cart</button>
                     </div>
                     <div className="d-flex pt-2">
