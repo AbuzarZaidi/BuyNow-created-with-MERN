@@ -64,7 +64,7 @@ const removeHandler=(i)=>{
               <tbody className="align-middle">
                 {product.map((val, i) => {
                   return (
-                    <tr>
+                    <tr key={i}>
                       <td className="align-middle">
                         <img
                           src={val.imgUrl[0]}

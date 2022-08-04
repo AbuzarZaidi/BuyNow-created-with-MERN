@@ -49,7 +49,7 @@ dispatch(setProductHandler(product));
                 <div className="bg-light p-4 mb-30">
                     <form>
                         <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" className="custom-control-input" checked id="price-all"/>
+                            <input type="checkbox" className="custom-control-input" defaultChecked id="price-all"/>
                             <label className="custom-control-label" htmlFor="price-all">All Price</label>
                            
                             {/* <span className="badge border font-weight-normal">1000</span> */}
@@ -89,7 +89,7 @@ dispatch(setProductHandler(product));
                 <div className="bg-light p-4 mb-30">
                     <form>
                         <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" className="custom-control-input" checked id="color-all"/>
+                            <input type="checkbox" className="custom-control-input" defaultChecked id="color-all"/>
                             <label className="custom-control-label" htmlFor="price-all">All Color</label>
                             <span className="badge badge-light border font-weight-normal">1000</span>
                         </div>
@@ -127,7 +127,7 @@ dispatch(setProductHandler(product));
                 <div className="bg-light p-4 mb-30">
                     <form>
                         <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" className="custom-control-input" checked id="size-all"/>
+                            <input type="checkbox" className="custom-control-input" defaultChecked id="size-all"/>
                             <label className="custom-control-label" htmlFor="size-all">All Size</label>
                             <span className="badge badge-light border font-weight-normal">1000</span>
                         </div>
@@ -195,11 +195,11 @@ dispatch(setProductHandler(product));
                     <div className='d-flex justify-content-center mb-4'>
                     
                     {!show&&<div className="spinner-border  " role="status">
-  <span class="sr-only">Loading...</span>
+  <span className="sr-only">Loading...</span>
 </div>}</div>
-                    {show&&products.map((val)=>{
+                    {show&&products.map((val,ind)=>{
                         return(
-                            <div className="col-lg-4 col-md-6 col-sm-6 pb-1" onClick={()=>productDetailHandler(val)}>
+                            <div className="col-lg-4 col-md-6 col-sm-6 pb-1" key={ind} onClick={()=>productDetailHandler(val)}>
                             <div className="product-item bg-light mb-4">
                                 <div className="product-img position-relative overflow-hidden">
                                     <img className="img-fluid w-100" src={val.imgUrl} alt="" style={{height:"250px"}}/>

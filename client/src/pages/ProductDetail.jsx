@@ -91,9 +91,9 @@ productQuantity:quantity,
                     {product.sizes.length>0&&<div className="d-flex mb-3">
                         <strong className="text-dark mr-3">Sizes:</strong>
                         <form>
-                        {product.sizes.map((size)=>{
+                        {product.sizes.map((size,ind)=>{
                                 return(
-<div className="custom-control custom-radio custom-control-inline">
+<div className="custom-control custom-radio custom-control-inline" key={ind}>
                                 <input type="radio" className="custom-control-input" id={size} name="size"/>
                                 <label className="custom-control-label" htmlFor="size-1">{size}</label>
                             </div>
@@ -105,9 +105,9 @@ productQuantity:quantity,
                     <div className="d-flex mb-4">
                         <strong className="text-dark mr-3">Colors:</strong>
                         <form>
-                            {product.colors.map((color)=>{
+                            {product.colors.map((color,ind)=>{
                                 return(
-<div className="custom-control custom-radio custom-control-inline">
+<div className="custom-control custom-radio custom-control-inline" key={ind}>
                                 <input type="radio" className="custom-control-input" id={color} name="color"/>
                                 <label className="custom-control-label" htmlFor="color-1">{color}</label>
                             </div>
@@ -124,7 +124,7 @@ productQuantity:quantity,
                                     <i className="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" className="form-control bg-secondary border-0 text-center" value={quantity}/>
+                            <input type="text" className="form-control bg-secondary border-0 text-center" defaultValue={quantity}/>
                             <div className="input-group-btn">
                                 <button className="btn btn-primary btn-plus" onClick={() => setQuantity(quantity + 1)}>
                                     <i className="fa fa-plus"></i>
