@@ -25,10 +25,10 @@ function App() {
  
 useEffect(() => {
   const dataaa=async()=>{
-    console.log("first")
+    // console.log("first")
     const { data } = await axios.get("http://localhost:5000/users/login/success")
-    console.log("yup")
-    console.log(data.succes)
+    // console.log("yup")
+    // console.log(data.succes)
     if(data.success){
       isLogin=true
     }

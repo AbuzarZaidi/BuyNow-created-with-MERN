@@ -22,10 +22,13 @@ const productSlice = createSlice({
           },
           setDecreaseQuantity(state,action){
             state.product[action.payload].productQuantity-=1;
+          },
+          setDeleteProductHandler(state,action){
+state.product=action.payload;
           }
     }
 })
 export const {
-    setProductHandler,setIncreaseQuantity,setTotalHandler, setShippingHandler,setSubTotalHandler,setDecreaseQuantity
+    setProductHandler,setIncreaseQuantity,setTotalHandler, setShippingHandler,setSubTotalHandler,setDecreaseQuantity,setDeleteProductHandler
   } = productSlice.actions;
 export default productSlice.reducer;
