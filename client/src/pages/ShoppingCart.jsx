@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setIncreaseQuantity, setDecreaseQuantity,setDeleteProductHandler } from "../store/cart";
+import { setIncreaseQuantity, setDecreaseQuantity,setDeleteProductHandler,setTotalHandler,setSubTotalHandler } from "../store/cart";
 const ShoppingCart = () => {
+  const navigate=useNavigate();
   let product = useSelector((state) => state.cartData.product);
   const shipping = useSelector((state) => state.cartData.shipping);
   const [total, setTotal] = useState(0);
@@ -27,6 +28,11 @@ const removeHandler=(i)=>{
   const minusHandler = (i) => {
     dispatch(setDecreaseQuantity(i));
   };
+  const checkOutHandler=()=>{
+    dispatch(setSubTotalHandler(total))
+    dispatch(setTotalHandler())
+    navigate('/checkout')
+  }
   return (
     <>
       {/* <!-- Breadcrumb Start --> */}
@@ -150,7 +156,7 @@ const removeHandler=(i)=>{
                   <h5>Total</h5>
                   <h5>${total + shipping}</h5>
                 </div>
-                <button className="btn btn-block btn-primary font-weight-bold my-3 py-3">
+                <button className="btn btn-block btn-primary font-weight-bold my-3 py-3" onClick={checkOutHandler}>
                   Proceed To Checkout
                 </button>
               </div>

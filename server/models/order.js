@@ -6,7 +6,7 @@ const ordersSchema = new Schema({
         required:true
     },
     products:{
-        type:String,
+        type:[],
         required:true 
     },
     total:{
@@ -15,6 +15,10 @@ const ordersSchema = new Schema({
     },
     status:{
         type:String,
+        required:true
+    },
+    userInfo:{
+        type:Object,
         required:true
     }
 },{timeStamps:true});

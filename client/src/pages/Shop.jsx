@@ -14,9 +14,9 @@ const Shop = () => {
 //   }, [])
   useEffect(() => {
     const fetchData = async () => {
-        console.log(category)
+        
       const result = await getProducts(category);
-      console.log(result)
+     
       setShow(true);
 
       setProducts(result);

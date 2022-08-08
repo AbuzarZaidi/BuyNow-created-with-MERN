@@ -1,6 +1,33 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {  Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Checkout = () => {
+    const product = useSelector((state) => state.cartData.product);
+    const subTotal = useSelector((state) => state.cartData.subTotal);
+    const shipping = useSelector((state) => state.cartData.shipping);
+    const total = useSelector((state) => state.cartData.total);
+    const [shippingDetail,setShippingDetail]=useState({
+        firstName:"",
+        lastName:"",
+        email:"",
+        phoneNumber:"",
+        address:"",
+        area:"",
+        city:"",
+        country:"",
+        state:"",
+        zipCode:"",
+    })
+    const placeOrderHandler=()=>{
+console.log(shippingDetail)
+    }
+    const infoHandler=(e)=>{
+        const { name, value } = e.target;
+        setShippingDetail(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
   return (
    <>
     {/* <!-- Breadcrumb Start --> */}
@@ -25,50 +52,52 @@ const Checkout = () => {
                     <div className="row">
                         <div className="col-md-6 form-group">
                             <label>First Name</label>
-                            <input className="form-control" type="text" placeholder="John"/>
+                            <input className="form-control" type="text" placeholder="John" name="firstName" value={shippingDetail.firstName} onChange={infoHandler} />
                         </div>
                         <div className="col-md-6 form-group">
                             <label>Last Name</label>
-                            <input className="form-control" type="text" placeholder="Doe"/>
+                            <input className="form-control" type="text" placeholder="Doe" name="lastName" value={shippingDetail.lastName} onChange={infoHandler}/>
                         </div>
                         <div className="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input className="form-control" type="text" placeholder="example@email.com"/>
+                            <input className="form-control" type="text" placeholder="example@email.com" name="email" value={shippingDetail.email} onChange={infoHandler}/>
                         </div>
                         <div className="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input className="form-control" type="text" placeholder="+123 456 789"/>
+                            <input className="form-control" type="text" placeholder="+123 456 789" name="phoneNumber" value={shippingDetail.phoneNumber} onChange={infoHandler}/>
                         </div>
                         <div className="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input className="form-control" type="text" placeholder="123 Street"/>
+                            <label>Address </label>
+                            <input className="form-control" type="text" placeholder="House# 123, Street# 123, ABC Road" name="address" value={shippingDetail.address} onChange={infoHandler}/>
                         </div>
                         <div className="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input className="form-control" type="text" placeholder="123 Street"/>
+                            <label>Area</label>
+                            <input className="form-control" type="text" placeholder="123 Street" name="area" value={shippingDetail.area} onChange={infoHandler}/>
                         </div>
                         <div className="col-md-6 form-group">
                             <label>Country</label>
-                            <select className="custom-select" defaultValue="United States">
-                                <option >United States</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
+                            <select className="custom-select" defaultValue="United States" name="country" onChange={infoHandler}>
+                            <option value="unitedStates">United States</option>
+                                    <option value="pakistan">Pakistan</option>
+                                    <option value="india">India</option>
+                                    <option value="afghanistan">Afghanistan</option>
+                                    <option value="albania"> Albania</option>
+                                    <option value="algeria">Algeria</option>
                             </select>
                         </div>
                         <div className="col-md-6 form-group">
                             <label>City</label>
-                            <input className="form-control" type="text" placeholder="New York"/>
+                            <input className="form-control" type="text" placeholder="New York" name="city" value={shippingDetail.city} onChange={infoHandler}/>
                         </div>
                         <div className="col-md-6 form-group">
                             <label>State</label>
-                            <input className="form-control" type="text" placeholder="New York"/>
+                            <input className="form-control" type="text" placeholder="New York" name="state" value={shippingDetail.state} onChange={infoHandler}/>
                         </div>
                         <div className="col-md-6 form-group">
                             <label>ZIP Code</label>
-                            <input className="form-control" type="text" placeholder="123"/>
+                            <input className="form-control" type="text" placeholder="123" name="zipCode" value={shippingDetail.zipCode} onChange={infoHandler}/>
                         </div>
-                        <div className="col-md-12 form-group">
+                        {/* <div className="col-md-12 form-group">
                             <div className="custom-control custom-checkbox">
                                 <input type="checkbox" className="custom-control-input" id="newaccount"/>
                                 <label className="custom-control-label" htmlFor="newaccount">Create an account</label>
@@ -79,7 +108,7 @@ const Checkout = () => {
                                 <input type="checkbox" className="custom-control-input" id="shipto"/>
                                 <label className="custom-control-label" htmlFor="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="collapse mb-5" id="shipping-address">
@@ -110,18 +139,21 @@ const Checkout = () => {
                                 <label>Address Line 2</label>
                                 <input className="form-control" type="text" placeholder="123 Street"/>
                             </div>
-                            <div className="col-md-6 form-group">
+                            {/* <div className="col-md-6 form-group">
                                 <label>Country</label>
                                 <select className="custom-select" defaultValue="United States">
                                     <option >United States</option>
+                                    <option>Pakistan</option>
+                                    <option>India</option>
                                     <option>Afghanistan</option>
                                     <option>Albania</option>
                                     <option>Algeria</option>
+                                    
                                 </select>
-                            </div>
+                            </div> */}
                             <div className="col-md-6 form-group">
                                 <label>City</label>
-                                <input className="form-control" type="text" placeholder="New York"/>
+                                <input className="form-control" type="text" placeholder="Lahore"/>
                             </div>
                             <div className="col-md-6 form-group">
                                 <label>State</label>
@@ -140,40 +172,41 @@ const Checkout = () => {
                 <div className="bg-light p-30 mb-5">
                     <div className="border-bottom">
                         <h6 className="mb-3">Products</h6>
-                        <div className="d-flex justify-content-between">
-                            <p>Product Name 1</p>
-                            <p>$150</p>
+                        {product.map(val=>{
+                            return <div className="d-flex justify-content-between">
+                            <p>{val.name}</p>
+                            <p>Rs{val.price}</p>
                         </div>
-                        <div className="d-flex justify-content-between">
-                            <p>Product Name 2</p>
-                            <p>$150</p>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                            <p>Product Name 3</p>
-                            <p>$150</p>
-                        </div>
+                        })}
+                        
                     </div>
                     <div className="border-bottom pt-3 pb-2">
                         <div className="d-flex justify-content-between mb-3">
                             <h6>Subtotal</h6>
-                            <h6>$150</h6>
+                            <h6>Rs{subTotal}</h6>
                         </div>
                         <div className="d-flex justify-content-between">
                             <h6 className="font-weight-medium">Shipping</h6>
-                            <h6 className="font-weight-medium">$10</h6>
+                            <h6 className="font-weight-medium">Rs{shipping}</h6>
                         </div>
                     </div>
                     <div className="pt-2">
                         <div className="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5>$160</h5>
+                            <h5>${total}</h5>
                         </div>
                     </div>
                 </div>
                 <div className="mb-5">
                     <h5 className="section-title position-relative text-uppercase mb-3"><span className="bg-secondary pr-3">Payment</span></h5>
                     <div className="bg-light p-30">
-                        <div className="form-group">
+                    <div className="form-group">
+                            <div className="custom-control custom-radio">
+                                <input type="radio" className="custom-control-input" name="payment" id="directcheck"/>
+                                <label className="custom-control-label" htmlFor="directcheck">Cash On Delivery</label>
+                            </div>
+                        </div>
+                        {/* <div className="form-group">
                             <div className="custom-control custom-radio">
                                 <input type="radio" className="custom-control-input" name="payment" id="paypal"/>
                                 <label className="custom-control-label" htmlFor="paypal">Paypal</label>
@@ -190,8 +223,8 @@ const Checkout = () => {
                                 <input type="radio" className="custom-control-input" name="payment" id="banktransfer"/>
                                 <label className="custom-control-label" htmlFor="banktransfer">Bank Transfer</label>
                             </div>
-                        </div>
-                        <button className="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
+                        </div> */}
+                        <button className="btn btn-block btn-primary font-weight-bold py-3"onClick={placeOrderHandler}>Place Order</button>
                     </div>
                 </div>
             </div>
