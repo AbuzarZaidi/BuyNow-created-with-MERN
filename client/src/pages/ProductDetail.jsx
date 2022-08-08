@@ -124,7 +124,7 @@ productQuantity:quantity,
                                     <i className="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" className="form-control bg-secondary border-0 text-center" defaultValue={quantity}/>
+                            <input type="text" className="form-control bg-secondary border-0 text-center"value={quantity} />
                             <div className="input-group-btn">
                                 <button className="btn btn-primary btn-plus" onClick={() => setQuantity(quantity + 1)}>
                                     <i className="fa fa-plus"></i>
