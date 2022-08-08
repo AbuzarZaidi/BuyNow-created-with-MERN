@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React from 'react'
 import {  Link } from "react-router-dom";
-import {useDispatch } from "react-redux";
+import {useSelector,useDispatch } from "react-redux";
 import { setCategoryHandler } from "../../store/products";
 import '../../css/style.css'
 const BottomNavbar = () => {
+    const totalProduct = useSelector((state) => state.cartData.product);
     const dispatch = useDispatch();
   const categoryHandler=(value)=>{
   dispatch(setCategoryHandler(value));
@@ -154,7 +155,7 @@ const BottomNavbar = () => {
                             </Link>
                             <Link to="/cart" className="btn px-0 ml-3">
                                 <i className="fas fa-shopping-cart text-primary"></i>
-                                <span className="badge text-secondary border border-secondary rounded-circle" style={{paddingBottom: '2px'}}>0</span>
+                                <span className="badge text-secondary border border-secondary rounded-circle" style={{paddingBottom: '2px'}}>{totalProduct.length}</span>
                             </Link>
                         </div>
                     </div>
