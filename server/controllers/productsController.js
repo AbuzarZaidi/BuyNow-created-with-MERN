@@ -4,8 +4,17 @@ const Product=require('../models/products')
 //get
 const getAllProducts=async(req,res)=>{
     try {
-        const data=await Product.find();
-        res.status(200).json(data);
+        const categoryType=req.query.category;
+        console.log(categoryType)
+        if(categoryType==="all"){
+            const data=await Product.find();
+            res.status(200).json(data);
+        }
+        else{
+            const data=await Product.find({category:categoryType});
+            res.status(200).json(data);
+        }
+       
     } catch (error) {
         res.status(404).json({ error: error.message });
     }

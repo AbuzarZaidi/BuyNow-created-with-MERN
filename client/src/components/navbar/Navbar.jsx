@@ -1,8 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {  Link } from "react-router-dom";
+import {useDispatch } from "react-redux";
+import { setCategoryHandler } from "../../store/products";
 import '../../css/style.css'
 const BottomNavbar = () => {
-  
+    const dispatch = useDispatch();
+  const categoryHandler=(value)=>{
+  dispatch(setCategoryHandler(value));
+  }
   return (
    <>
    {/* <!-- Navbar Start --> */}
@@ -18,9 +23,9 @@ const BottomNavbar = () => {
                         <div className="nav-item dropdown dropright">
                             <div  className="nav-link dropdown-toggle" data-toggle="dropdown">Groceries & Pets <i className="fa fa-angle-right float-right mt-1"></i></div>
                             <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <Link to='/shop' className="dropdown-item">Men's Dresses</Link>
-                                <Link to='/shop' className="dropdown-item">Women's Dresses</Link>
-                                <Link to='/shop' className="dropdown-item">Baby's Dresses</Link>
+                                <Link to='/shop' onClick={categoryHandler} className="dropdown-item">Men's Dresses</Link>
+                                <Link to='/shop' onClick={categoryHandler} className="dropdown-item">Women's Dresses</Link>
+                                <Link to='/shop' onClick={categoryHandler} className="dropdown-item">Baby's Dresses</Link>
                             </div>
                         </div>
                         <div className="nav-item dropdown dropright">
@@ -34,9 +39,10 @@ const BottomNavbar = () => {
                         <div className="nav-item dropdown dropright">
                             <div  className="nav-link dropdown-toggle" data-toggle="dropdown">Men's Fashion <i className="fa fa-angle-right float-right mt-1"></i></div>
                             <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <Link to='/shop' className="dropdown-item">Men's Dresses</Link>
-                                <Link to='/shop' className="dropdown-item">Women's Dresses</Link>
-                                <Link to='/shop' className="dropdown-item">Baby's Dresses</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("menshirts")} className="dropdown-item">T-Shirts & Shirts </Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("jeans")}  className="dropdown-item">Pants and Jeans</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("trousers")}  className="dropdown-item">Trousers</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("shoes")}  className="dropdown-item">Shoes</Link>
                             </div>
                         </div>
                         <div className="nav-item dropdown dropright">

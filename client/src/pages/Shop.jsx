@@ -1,11 +1,12 @@
 import React,{useEffect,useState} from 'react'
 import {  Link,useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { setProductHandler } from "../store/products";
 import {getProducts} from'../functions/products'
 const Shop = () => {
     const dispatch = useDispatch();
     const navigate=useNavigate();
+    const category = useSelector((state) => state.productData.category);
     const [products,setProducts]=useState([]);
     const[show,setShow]=useState(false);
 //   useEffect(() => {
@@ -13,13 +14,15 @@ const Shop = () => {
 //   }, [])
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getProducts();
+        console.log(category)
+      const result = await getProducts(category);
+      console.log(result)
       setShow(true);
 
       setProducts(result);
     };
     fetchData();
-  }, [setProducts]);
+  }, [setProducts,category]);
   const productDetailHandler=(product)=>{
 navigate('/detail')
 dispatch(setProductHandler(product));

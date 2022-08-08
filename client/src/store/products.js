@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialCounterState = {  product:{}};
+const initialCounterState = {  product:{},category:"all"};
 const productSlice = createSlice({
     name: "product",
     initialState: initialCounterState,
@@ -7,9 +7,12 @@ const productSlice = createSlice({
         setProductHandler(state, action) {
             state.product=action.payload;
           },
+          setCategoryHandler(state, action) {
+            state.category=action.payload;
+          },
     }
 })
 export const {
-    setProductHandler
+    setProductHandler,setCategoryHandler
   } = productSlice.actions;
 export default productSlice.reducer;
