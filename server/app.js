@@ -3,6 +3,7 @@ const express=require('express');
 const bodyParser=require('body-parser')
 const usersRoutes=require('./routes/usersRoutes')
 const productRoutes=require('./routes/productRoutes')
+const orderRoutes=require('./routes/orderRoutes')
 require("./db/index.js");
 const passportSetup = require("./passport");
 const cors = require('cors');
@@ -33,6 +34,7 @@ app.use(
 
 app.use('/users',usersRoutes);
 app.use('/products',productRoutes)
+app.use('/orders',orderRoutes)
 app.use('/',(req,res,next)=>{
   res.json({message:"hello wolrd"})
 })

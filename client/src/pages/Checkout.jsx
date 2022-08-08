@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
-import {  Link } from "react-router-dom";
+import {  Link,useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {createOrder} from "../functions/orders"
 const Checkout = () => {
+    const navigate=useNavigate();
     const product = useSelector((state) => state.cartData.product);
     const subTotal = useSelector((state) => state.cartData.subTotal);
     const shipping = useSelector((state) => state.cartData.shipping);
@@ -18,8 +20,16 @@ const Checkout = () => {
         state:"",
         zipCode:"",
     })
-    const placeOrderHandler=()=>{
-console.log(shippingDetail)
+    const placeOrderHandler=async()=>{
+const info={
+    userInfo:shippingDetail,
+    status:"pending",
+    trackingId:Math.floor(100000 + Math.random() * 900000),
+    products:product,
+    total
+}
+await createOrder(info);
+navigate('/')
     }
     const infoHandler=(e)=>{
         const { name, value } = e.target;
@@ -172,8 +182,8 @@ console.log(shippingDetail)
                 <div className="bg-light p-30 mb-5">
                     <div className="border-bottom">
                         <h6 className="mb-3">Products</h6>
-                        {product.map(val=>{
-                            return <div className="d-flex justify-content-between">
+                        {product.map((val,ind)=>{
+                            return <div className="d-flex justify-content-between" key={ind}>
                             <p>{val.name}</p>
                             <p>Rs{val.price}</p>
                         </div>
