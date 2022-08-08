@@ -72,18 +72,19 @@ const BottomNavbar = () => {
                         <div className="nav-item dropdown dropright">
                             <div  className="nav-link dropdown-toggle" data-toggle="dropdown">Electronic Devices<i className="fa fa-angle-right float-right mt-1"></i></div>
                             <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <Link to='/shop' className="dropdown-item">Men's Dresses</Link>
-                                <Link to='/shop' className="dropdown-item">Women's Dresses</Link>
-                                <Link to='/shop' className="dropdown-item">Baby's Dresses</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("smartPhones")}   className="dropdown-item">Smart Phones</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("desktops")}   className="dropdown-item">Desktops</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("laptops")}   className="dropdown-item">Laptops</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("smartWatches")}  className="dropdown-item">Smart Watches</Link>
                             </div>
                         </div>
 
                         <div className="nav-item dropdown dropright">
                             <div  className="nav-link dropdown-toggle" data-toggle="dropdown">Electronic Accessories<i className="fa fa-angle-right float-right mt-1"></i></div>
                             <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <Link to='/shop' className="dropdown-item">Men's Dresses</Link>
-                                <Link to='/shop' className="dropdown-item">Women's Dresses</Link>
-                                <Link to='/shop' className="dropdown-item">Baby's Dresses</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("computerAccessiories")}  className="dropdown-item">Computer Accessiories</Link>
+                                <Link to='/shop' onClick={()=>categoryHandler("mobileAccessiories")}  className="dropdown-item">Mobile Accessiories</Link>
+                                <Link to='/shop'onClick={()=>categoryHandler("headphones")}  className="dropdown-item">HeadPhones & Headsets</Link>
                             </div>
                         </div>
                         <div className="nav-item dropdown dropright">
