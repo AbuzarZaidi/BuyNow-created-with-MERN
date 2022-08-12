@@ -14,7 +14,7 @@ const Shop = () => {
 //   }, [])
   useEffect(() => {
     const fetchData = async () => {
-        
+        setShow(false);
       const result = await getProducts(category);
      
       setShow(true);
@@ -26,6 +26,14 @@ const Shop = () => {
   const productDetailHandler=(product)=>{
 navigate('/detail')
 dispatch(setProductHandler(product));
+  }
+  const sortAscendingHandler=async(val)=>{
+    setShow(false);
+    const result = await getProducts(category,"price",val);
+   
+    setShow(true);
+
+    setProducts(result);
   }
   return (
     <>
@@ -181,6 +189,8 @@ dispatch(setProductHandler(product));
                                     <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
                                     <div className="dropdown-menu dropdown-menu-right">
                                         <Link className="dropdown-item" to="/">Latest</Link>
+                                        <Link className="dropdown-item" to="/shop" onClick={()=>sortAscendingHandler('asc')}>Price lowest to highest</Link>
+                                        <Link className="dropdown-item" to="/shop" onClick={()=>sortAscendingHandler('desc')}>Price highest to lowest</Link>
                                         <Link className="dropdown-item" to="/">Popularity</Link>
                                         <Link className="dropdown-item" to="/">Best Rating</Link>
                                     </div>
