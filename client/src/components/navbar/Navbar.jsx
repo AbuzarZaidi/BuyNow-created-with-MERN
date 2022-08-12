@@ -136,8 +136,8 @@ const BottomNavbar = () => {
                     </button>
                     <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div className="navbar-nav mr-auto py-0">
-                            <Link to="/" className="nav-item nav-link active">Home</Link>
-                            <Link to="/shop" className="nav-item nav-link">Shop</Link>
+                            {/* <Link to="/" className="nav-item nav-link active">Home</Link>
+                            <Link to="/shop" className="nav-item nav-link">Shop</Link> */}
                             {/* <Link to="/detail" className="nav-item nav-link">Shop Detail</Link> */}
                               {/* <div className="nav-item dropdown">
                                 <Link to="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i className="fa fa-angle-down mt-1"></i></Link>
@@ -149,13 +149,13 @@ const BottomNavbar = () => {
                             {/* <Link to="/contact" className="nav-item nav-link">Contact</Link> */}
                         </div>
                         <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <Link to="/" className="btn px-0">
+                            <Link to="/" className="btn px-0" style={{paddingTop: '20px'}}>
                                 <i className="fas fa-heart text-primary"></i>
-                                <span className="badge text-secondary border border-secondary rounded-circle" style={{paddingBottom: '2px'}}>0</span>
+                                <span className="badge text-secondary border border-secondary rounded-circle" >0</span>
                             </Link>
-                            <Link to="/cart" className="btn px-0 ml-3">
+                            <Link to="/cart" className="btn px-0 ml-3" style={{paddingTop: '20px'}}>
                                 <i className="fas fa-shopping-cart text-primary"></i>
-                                <span className="badge text-secondary border border-secondary rounded-circle" style={{paddingBottom: '2px'}}>{totalProduct.length}</span>
+                                <span className="badge text-secondary border border-secondary rounded-circle" >{totalProduct.length}</span>
                             </Link>
                         </div>
                     </div>
