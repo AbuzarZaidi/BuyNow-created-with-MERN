@@ -36,7 +36,7 @@ if(req.query.sort==="undefined,undefined"){
 const getSingleProduct=async(req,res)=>{
     const id=req.params.id;
     try {
-        const data = await Product.find({ _id: id });
+        const data = await Product.find({category:"mobileAccessiories",category:"smartWatches"},{name:1}).limit(1);
         res.status(200).json(data);
     } catch (error) {
         res.status(404).json({ error: error.message });
