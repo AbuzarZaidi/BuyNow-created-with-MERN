@@ -4,35 +4,45 @@ const Product=require('../models/products')
 //get
 const getAllProducts=async(req,res)=>{
     try {
-        const categoryType=req.query.category;
-req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
-console.log(req.query.sort )
-		let sortBy = {};
-if(req.query.sort==="undefined,undefined"){
-    sortBy={}
-}else{
-    if (sort[1]) {
-        sortBy[sort[0]] = sort[1];
-    } else {
-        sortBy[sort[0]] = "asc";
-    }
-}
-		
-        console.log(sortBy)
-        if(categoryType==="all"){
-
-            const data=await Product.find().sort(sortBy);
-            res.status(200).json(data);
-        }
-        else{
-            const data=await Product.find({category:categoryType}).sort(sortBy);
-            res.status(200).json(data);
-        }
-       
+        const data=await Product.find()
+        res.status(200).json(data);
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
+   
 }
+// const getAllProducts=async(req,res)=>{
+//     try {
+//         const categoryType=req.query.category;
+// req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
+// console.log(req.query.sort )
+// 		let sortBy = {};
+// if(req.query.sort==="undefined,undefined"){
+//     sortBy={}
+// }else{
+//     if (sort[1]) {
+//         sortBy[sort[0]] = sort[1];
+//     } else {
+//         sortBy[sort[0]] = "asc";
+//     }
+// }
+		
+//         console.log(sortBy)
+//         if(categoryType==="all"){
+
+//             const data=await Product.find().sort(sortBy);
+//             console.log(data)
+//             res.status(200).json(data);
+//         }
+//         else{
+//             const data=await Product.find({category:categoryType}).sort(sortBy);
+//             res.status(200).json(data);
+//         }
+       
+//     } catch (error) {
+//         res.status(404).json({ error: error.message });
+//     }
+// }
 const getSingleProduct=async(req,res)=>{
     const id=req.params.id;
     try {

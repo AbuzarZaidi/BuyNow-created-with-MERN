@@ -1,6 +1,47 @@
-import React from 'react'
+import React,{ useReducer,useState } from "react";
 import {  Link } from "react-router-dom";
+import {contactUsHandler} from "../functions/message"
 const Contact = () => {
+    const [resData,setResData]=useState({
+        message:"",
+        error:false,
+        response:false,
+    })
+    const [contactData, dispatch] = useReducer(
+        (state, action) => ({
+          ...state,
+          ...action,
+        }),
+        {
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        }
+      );
+    const sendMessageHandler=async()=>{
+       
+      const res=  await contactUsHandler(contactData);
+      dispatch( {
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      })
+     
+      setResData({
+        message:res.message,
+        error:res.error,
+        response:true,
+      })
+    }
+    const notificationCloseHandler=()=>{
+        setResData({
+            message:"",
+            error:false,
+            response:false,
+        })
+    }
   return (
    <>
       {/* <!-- Breadcrumb Start --> */}
@@ -22,34 +63,50 @@ const Contact = () => {
         <div className="row px-xl-5">
             <div className="col-lg-7 mb-5">
                 <div className="contact-form bg-light p-30">
-                    <div id="success"></div>
-                    <form name="sentMessage" id="contactForm" noValidate="novalidate">
+                    {/* <div id="success"></div> */}
+                   {resData.response&&<div class="alert" style={{backgroundColor:"green"}}>
+  <span class="closebtn" onClick={notificationCloseHandler}>&times;</span> 
+  <strong>{resData.message}</strong> 
+</div>} 
+
+                    {/* <form > */}
+                    {/* name="sentMessage" id="contactForm" noValidate="novalidate" */}
                         <div className="control-group">
                             <input type="text" className="form-control" id="name" placeholder="Your Name"
+                             value={contactData.name}
+                             onChange={(e) => dispatch({ name: e.target.value })}
+                     
                                 required="required" data-validation-required-message="Please enter your name" />
                             <p className="help-block text-danger"></p>
                         </div>
                         <div className="control-group">
                             <input type="email" className="form-control" id="email" placeholder="Your Email"
+                             value={contactData.email}
+                             onChange={(e) => dispatch({ email: e.target.value })}
+                     
                                 required="required" data-validation-required-message="Please enter your email" />
                             <p className="help-block text-danger"></p>
                         </div>
                         <div className="control-group">
                             <input type="text" className="form-control" id="subject" placeholder="Subject"
+                             value={contactData.subject}
+                             onChange={(e) => dispatch({ subject: e.target.value })}
                                 required="required" data-validation-required-message="Please enter a subject" />
                             <p className="help-block text-danger"></p>
                         </div>
                         <div className="control-group">
                             <textarea className="form-control" rows="8" id="message" placeholder="Message"
+                             value={contactData.message}
+                             onChange={(e) => dispatch({ message: e.target.value })}
                                 required="required"
                                 data-validation-required-message="Please enter your message"></textarea>
                             <p className="help-block text-danger"></p>
                         </div>
                         <div>
-                            <button className="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Send
+                            <button onClick={sendMessageHandler} className="btn btn-primary py-2 px-4"  >Send
                                 Message</button>
                         </div>
-                    </form>
+                    {/* </form> */}
                 </div>
             </div>
             <div className="col-lg-5 mb-5">

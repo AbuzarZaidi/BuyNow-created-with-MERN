@@ -3,7 +3,7 @@ const {createProduct,getAllProducts,getSingleProduct,updateProduct,deleteProduct
 const router=express.Router();
 
 router.post('/',createProduct);
-// router.get('/',getAllProducts)
+router.get('/',getAllProducts)
 router.get('/',getSingleProduct);
 // router.get('/:id',getSingleProduct);
 router.patch('/:id',updateProduct)

@@ -19,8 +19,8 @@ const TopNavbar = () => {
         <div className="row bg-secondary py-1 px-xl-5">
             <div className="col-lg-6 d-none d-lg-block">
                 <div className="d-inline-flex align-items-center h-100">
-                    <Link to='/' className="text-body mr-3" >About</Link>
-                    <Link to='/' className="text-body mr-3" >Contact</Link>
+                    <Link to='/about' className="text-body mr-3" >About</Link>
+                    <Link to='/contact' className="text-body mr-3" >Contact</Link>
                     <Link to='/' className="text-body mr-3" >Help</Link>
                     <Link to='/' className="text-body mr-3" >FAQs</Link>
                 </div>
