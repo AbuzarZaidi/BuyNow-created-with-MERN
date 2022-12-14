@@ -52,13 +52,13 @@ useEffect(() => {
    <Navbar/>
    <Routes>
         <Route path="/" element={<Home />} />
-         <Route path="/contact" element={<Contact />} />
-         <Route path="/detail" element={<ProductDetail/>}/>
-        <Route path="/shop" element={<Shop />} />
-       <Route path="/cart" element={<ShoppingCart/>} />
-        <Route path="/checkout" element={<Checkout/>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/signin" element={<Signin/>} />
+        {isLogin&&<Route path="/contact" element={<Contact />} />} 
+        {isLogin&& <Route path="/detail" element={<ProductDetail/>}/>}
+        {isLogin&& <Route path="/shop" element={<Shop />} />}
+        {isLogin&&<Route path="/cart" element={<ShoppingCart/>} />}
+        {isLogin&& <Route path="/checkout" element={<Checkout/>} />}
+        {!isLogin&&<Route path="/signup" element={<Signup/>} />}
+        {!isLogin&&<Route path="/signin" element={<Signin/>} />}
        
         
       </Routes>

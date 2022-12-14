@@ -1,9 +1,14 @@
 import React from 'react'
 import {  Link,useNavigate } from "react-router-dom";
-
+import { useSelector,useDispatch} from "react-redux";
+import {
+    setlogoutHandler
+  } from "../../store/auth";
 import '../../css/style.css'
 const TopNavbar = () => {
     let navigate = useNavigate();
+    const dispatch = useDispatch();
+    let isLogin= useSelector((state) => state.authData.isLogin);
     const signupHandler=()=>{
       
         navigate("../signup", { replace: true });
@@ -11,6 +16,12 @@ const TopNavbar = () => {
     const signinHandler=()=>{
         
         navigate("../signin", { replace: true });
+    }
+    const logoutHandler=()=>{
+        navigate("/", { replace: true });
+       
+        dispatch(setlogoutHandler());
+        localStorage.removeItem("userData");
     }
   return (
     <>
@@ -20,7 +31,7 @@ const TopNavbar = () => {
             <div className="col-lg-6 d-none d-lg-block">
                 <div className="d-inline-flex align-items-center h-100">
                     <Link to='/about' className="text-body mr-3" >About</Link>
-                    <Link to='/contact' className="text-body mr-3" >Contact</Link>
+                   <Link to={isLogin?'/contact':'/signin'} className="text-body mr-3" >Contact</Link>
                     <Link to='/' className="text-body mr-3" >Help</Link>
                     <Link to='/' className="text-body mr-3" >FAQs</Link>
                 </div>
@@ -30,8 +41,9 @@ const TopNavbar = () => {
                     <div className="btn-group">
                         <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div className="dropdown-menu dropdown-menu-right">
-                            <button className="dropdown-item" type="button" onClick={signinHandler}>Sign in</button>
-                            <button className="dropdown-item" type="button" onClick={signupHandler}>Sign up</button>
+                           {!isLogin&&<button className="dropdown-item" type="button" onClick={signinHandler}>Sign in</button>}
+                           {!isLogin&& <button className="dropdown-item" type="button" onClick={signupHandler}>Sign up</button>}
+                           {isLogin&& <button className="dropdown-item" type="button" onClick={logoutHandler} style={{textAlign:"center"}}><img src="./img/logout.png" style={{height:"20px",border:"none",marginRight:"5px"}}  alt="" />Log out</button>}
                         </div>
                     </div>
                     <div className="btn-group mx-2">
