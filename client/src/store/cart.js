@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialCounterState = {  product:[],subTotal:0,shipping:50,total:0};
+const initialCartState = {  product:[],subTotal:0,shipping:50,total:0};
 const productSlice = createSlice({
     name: "cart",
-    initialState: initialCounterState,
+    initialState: initialCartState,
     reducers: {
         setProductHandler(state, action) {
             state.product.push(action.payload);
@@ -25,10 +25,14 @@ const productSlice = createSlice({
           },
           setDeleteProductHandler(state,action){
 state.product=action.payload;
-          }
+          },
+          resetProductHandler(){
+            return initialCartState
+           }
+         
     }
 })
 export const {
-    setProductHandler,setIncreaseQuantity,setTotalHandler, setShippingHandler,setSubTotalHandler,setDecreaseQuantity,setDeleteProductHandler
+    setProductHandler,setIncreaseQuantity,setTotalHandler, setShippingHandler,setSubTotalHandler,setDecreaseQuantity,setDeleteProductHandler,resetProductHandler
   } = productSlice.actions;
 export default productSlice.reducer;

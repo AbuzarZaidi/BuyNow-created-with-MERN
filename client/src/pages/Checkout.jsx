@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
 import {  Link,useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { resetProductHandler } from"../store/cart"
 import {createOrder} from "../functions/orders"
 const Checkout = () => {
     const navigate=useNavigate();
+    const dispatch = useDispatch();
     const product = useSelector((state) => state.cartData.product);
     const subTotal = useSelector((state) => state.cartData.subTotal);
     const shipping = useSelector((state) => state.cartData.shipping);
@@ -29,6 +31,7 @@ const info={
     total
 }
 await createOrder(info);
+dispatch(resetProductHandler())
 navigate('/')
     }
     const infoHandler=(e)=>{

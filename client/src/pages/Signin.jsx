@@ -76,7 +76,7 @@ const Signin = () => {
 <div className="mb-3 ">
   <label htmlFor="exampleFormControlInput1" className="form-label"   >Password*</label>
  
-  <input type="email" className="form-control " id="exampleFormControlInput1" placeholder="At least six characters."onChange={(e) => {
+  <input type="password" className="form-control " id="exampleFormControlInput1" placeholder="At least six characters."onChange={(e) => {
             setPassword(e.target.value);
           }}/>
 </div>
