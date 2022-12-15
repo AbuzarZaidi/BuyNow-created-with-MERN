@@ -20,20 +20,45 @@ const Contact = () => {
         }
       );
     const sendMessageHandler=async()=>{
-       
-      const res=  await contactUsHandler(contactData);
-      dispatch( {
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      })
+       try {
+        if(contactData.name===""&&contactData.email===""&&contactData.subject===""&&contactData.message===""){
+            setResData({
+                message:"Please Fill the Form Complete!",
+                error:true,
+                response:true,
+              })
+        }else if(!contactData.email.includes('@')){
+            setResData({
+                message:"Please Enter Correct Email!",
+                error:true,
+                response:true,
+              })
+        }else{
+            const res=  await contactUsHandler(contactData);
+            setResData({
+                message:res.message,
+                error:res.error,
+                response:true,
+              })
+              if(!res.error){
+                dispatch( {
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: "",
+                  })
+        }
+        
+        
+  
+      }
+        
+       } catch (error) {
+        console.log(error)
+       }
+      
+   
      
-      setResData({
-        message:res.message,
-        error:res.error,
-        response:true,
-      })
     }
     const notificationCloseHandler=()=>{
         setResData({
@@ -42,6 +67,7 @@ const Contact = () => {
             response:false,
         })
     }
+    const notificationColor=resData.error?'red':'green'
   return (
    <>
       {/* <!-- Breadcrumb Start --> */}
@@ -64,7 +90,7 @@ const Contact = () => {
             <div className="col-lg-7 mb-5">
                 <div className="contact-form bg-light p-30">
                     {/* <div id="success"></div> */}
-                   {resData.response&&<div class="alert" style={{backgroundColor:"green"}}>
+                   {resData.response&&<div class="alert" style={{backgroundColor:notificationColor}}>
   <span class="closebtn" onClick={notificationCloseHandler}>&times;</span> 
   <strong>{resData.message}</strong> 
 </div>} 
@@ -80,7 +106,7 @@ const Contact = () => {
                             <p className="help-block text-danger"></p>
                         </div>
                         <div className="control-group">
-                            <input type="email" className="form-control" id="email" placeholder="Your Email"
+                            <input  type="email" className="form-control" id="email" placeholder="Your Email"
                              value={contactData.email}
                              onChange={(e) => dispatch({ email: e.target.value })}
                      
