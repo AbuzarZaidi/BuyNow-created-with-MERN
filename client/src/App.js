@@ -3,7 +3,7 @@ import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import { useSelector,useDispatch} from "react-redux";
 import {
-  setTokenHandler, setIdHandler,setNameHandler
+  setTokenHandler, setIdHandler,setNameHandler,setLogin
 } from "./store/auth";
 import Navbar from "./components/navbar/Navbar";
 import TopNavbar from "./components/navbar/TopNavbar";
@@ -27,10 +27,11 @@ useEffect(() => {
   const dataaa=async()=>{
     // console.log("first")
     const { data } = await axios.get("http://localhost:5000/users/login/success")
-    // console.log("yup")
+console.log( data )
     // console.log(data.succes)
     if(data.success){
-      isLogin=true
+      dispatch(setLogin())
+      // isLogin=true
     }
   }
   dataaa();

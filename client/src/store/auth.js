@@ -19,12 +19,15 @@ setlogoutHandler(state){
   state.id="";
   state.isLogin=false;
 },
+setLogin(state){
+  state.isLogin=true
+},
 setActiveHandler(state){
 state.active=Math.floor(Math.random() * 10);
 }
     }
 })
 export const {
-    setTokenHandler, setIdHandler,setlogoutHandler,setActiveHandler,setNameHandler
+    setTokenHandler, setIdHandler,setlogoutHandler,setActiveHandler,setNameHandler,setLogin
   } = authSlice.actions;
 export default authSlice.reducer;
