@@ -9,6 +9,7 @@ const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
+    localStorage.setItem('cartProduct',JSON.stringify(product))
     let sum = 0;
     for (let i = 0; i < product.length; i++) {
       sum = sum + product[i].productQuantity * product[i].price;

@@ -6,7 +6,9 @@ const productSlice = createSlice({
     reducers: {
         setProductHandler(state, action) {
             state.product.push(action.payload);
-           
+          },
+          setInitialProduct(state,action){
+            state.product=action.payload;
           },
           setSubTotalHandler(state, action) {
             state.subTotal=action.payload;
@@ -33,6 +35,6 @@ state.product=action.payload;
     }
 })
 export const {
-    setProductHandler,setIncreaseQuantity,setTotalHandler, setShippingHandler,setSubTotalHandler,setDecreaseQuantity,setDeleteProductHandler,resetProductHandler
+    setProductHandler,setIncreaseQuantity,setTotalHandler, setShippingHandler,setSubTotalHandler,setDecreaseQuantity,setDeleteProductHandler,resetProductHandler,setInitialProduct
   } = productSlice.actions;
 export default productSlice.reducer;
