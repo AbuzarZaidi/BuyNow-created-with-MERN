@@ -8,6 +8,7 @@ import {
   setNameHandler,
   setLogin,
 } from "./store/auth";
+import {fetchCategory} from './store/category'
 import { setInitialProduct } from "./store/cart";
 import Navbar from "./components/navbar/Navbar";
 import TopNavbar from "./components/navbar/TopNavbar";
@@ -27,6 +28,7 @@ function App() {
   let isLogin = useSelector((state) => state.authData.isLogin);
 
   useEffect(() => {
+    dispatch(fetchCategory());
     const dataaa = async () => {
       const { data } = await axios.get(
         "http://localhost:5000/users/login/success"
