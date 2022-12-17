@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialCounterState = {  product:{},category:"all"};
+const initialProductState = {  product:{},category:"all"};
 const productSlice = createSlice({
     name: "product",
-    initialState: initialCounterState,
+    initialState: initialProductState,
     reducers: {
         setProductHandler(state, action) {
             state.product=action.payload;

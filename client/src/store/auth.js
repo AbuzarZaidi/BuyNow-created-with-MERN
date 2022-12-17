@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialCounterState = {  token:"",id:"",isLogin:false,active:0,userName:"",};
+const initialAuthState = {  token:"",id:"",isLogin:false,active:0,userName:"",};
 const authSlice = createSlice({
     name: "auth",
-    initialState: initialCounterState,
+    initialState: initialAuthState,
     reducers: {
         setTokenHandler(state, action) {
             state.token=action.payload;
